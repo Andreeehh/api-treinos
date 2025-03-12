@@ -10,6 +10,9 @@ router.post('/', studentController.createStudent);
 // Rota para buscar todos os alunos
 router.get('/', studentController.getAllStudents);
 
+// Rota para buscar alunos por nome
+router.get('/search', studentController.findByName);
+
 // Rota para buscar um aluno por ID
 router.get('/:id', studentController.getStudentById);
 
@@ -19,7 +22,5 @@ router.put('/:id', studentController.updateStudent);
 // Rota para deletar um aluno
 router.delete('/:id', studentController.deleteStudent);
 
-// Rota para buscar alunos por nome
-router.get('/search', studentController.findByName);
 
 module.exports = router;
