@@ -63,3 +63,26 @@ exports.deleteStudent = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Buscar alunos por nome
+exports.findByName = async (req, res) => {
+  try {
+    const { name } = req.query; // Obtém o nome da query string
+    if (!name) {
+      return res.status(400).json({ message: 'O parâmetro "name" é obrigatório.' });
+    }
+
+    // Busca alunos cujo nome contenha o termo fornecido (case-insensitive)
+    const students = await Student.find({
+      name: { $regex: name, $options: 'i' },
+    });
+
+    if (students.length === 0) {
+      return res.status(404).json({ message: 'Nenhum aluno encontrado.' });
+    }
+
+    res.status(200).json(students);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

@@ -19,4 +19,7 @@ router.put('/:id', studentController.updateStudent);
 // Rota para deletar um aluno
 router.delete('/:id', studentController.deleteStudent);
 
+// Rota para buscar alunos por nome
+router.get('/search', studentController.findByName);
+
 module.exports = router;
