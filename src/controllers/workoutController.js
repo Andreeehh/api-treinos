@@ -35,6 +35,18 @@ exports.getWorkoutById = async (req, res) => {
   }
 };
 
+// Buscar treinos por aluno
+exports.getWorkoutsByStudent = async (req, res) => {
+  try {
+    const workouts = await Workout.find({ student: req.params.studentId })
+      .populate('student')
+      .populate('blocks.exercises.exercise');
+    res.status(200).json(workouts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // Atualizar treino
 exports.updateWorkout = async (req, res) => {
   try {

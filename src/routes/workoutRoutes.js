@@ -13,6 +13,9 @@ router.get('/', workoutController.getAllWorkouts);
 // Rota para buscar um treino por ID
 router.get('/:id', workoutController.getWorkoutById);
 
+// Rota para buscar treinos por aluno
+router.get('/student/:studentId', workoutController.getWorkoutsByStudent);
+
 // Rota para atualizar um treino
 router.put('/:id', workoutController.updateWorkout);
 
